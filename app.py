@@ -30,6 +30,10 @@ def get_whois_info(ip):
 def send_static(path):
     return send_from_directory('static', path)
 
+@app.route('/about')
+def about():
+    return render_template('about.html', title='About', heading='About This Application')
+
 @app.route('/', methods=['GET', 'POST'])
 def hello_world():
     if request.method == 'POST':
@@ -42,4 +46,4 @@ def hello_world():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
