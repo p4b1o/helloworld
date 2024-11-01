@@ -1,20 +1,20 @@
-# Installation Instructions
+# Instrukcje instalacji
 
-1. Clone the repository:
+1. Sklonuj repozytorium:
    ```
    git clone https://github.com/yourusername/helloworld.git
    cd helloworld
    ```
 
-2. Build and run the Docker containers:
+2. Zbuduj i uruchom kontenery Docker:
    ```
    docker-compose up --build
    ```
 
-3. Access the application:
-   Open your web browser and go to `http://localhost`.
+3. Uzyskaj dostęp do aplikacji:
+   Otwórz przeglądarkę internetową i przejdź do `http://localhost`.
 
-4. To stop the application:
+4. Aby zatrzymać aplikację:
    ```
    docker-compose down
    ```
