@@ -30,4 +30,4 @@ COPY nginx.conf /etc/nginx/nginx.conf
 EXPOSE 80
 
 # Start Nginx and the application
-CMD service nginx start && python3 app.py
+CMD service nginx start && python3 app.py --port 5000

@@ -1,14 +1,18 @@
-version: '3.8'
+version: '3'
 
 services:
-  web:
+  # web:
+  #   build: .
+  #   ports:
+  #     - "80:80"
+  #   depends_on:
+  #     - app
+
+  app:
     build: .
+    command: python3 app.py
     ports:
-      - "80:80"
-    volumes:
-      - .:/app
-    depends_on:
-      - nginx
+      - "5000:5000"
 
   nginx:
     image: nginx:latest
