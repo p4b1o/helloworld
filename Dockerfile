@@ -15,7 +15,12 @@ COPY . /app
 WORKDIR /app
 
 # Install Python dependencies
-RUN pip3 install -r requirements.txt
+RUN python3 -m venv /opt/venv
+RUN /opt/venv/bin/pip install --upgrade pip
+RUN /opt/venv/bin/pip install -r requirements.txt
+
+# Ensure the virtual environment is used:
+ENV PATH="/opt/venv/bin:$PATH"
 
 # Copy Nginx configuration file
 COPY nginx.conf /etc/nginx/nginx.conf
