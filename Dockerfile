@@ -1,33 +1,17 @@
-# Use the official Ubuntu base image
-FROM ubuntu:latest
+# Use an official Python runtime as a parent image
+FROM python:3.8-slim
 
-# Install necessary packages
-RUN apt-get update && apt-get install -y \
-    python3 \
-    python3-pip \
-    python3.12-venv \
-    nginx \
-    && rm -rf /var/lib/apt/lists/*
+# Set the working directory in the container
+WORKDIR /usr/src/app
 
-# Copy application code
-COPY . /app
+# Copy the current directory contents into the container at /usr/src/app
+COPY . .
 
-# Set the working directory
-WORKDIR /app
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Install Python dependencies
-RUN python3 -m venv /opt/venv
-RUN /opt/venv/bin/pip install --upgrade pip
-RUN /opt/venv/bin/pip install -r requirements.txt
-
-# Ensure the virtual environment is used:
-ENV PATH="/opt/venv/bin:$PATH"
-
-# Copy Nginx configuration file
-COPY nginx.conf /etc/nginx/nginx.conf
-
-# Expose the port Nginx will run on
+# Make port 80 available to the world outside this container
 EXPOSE 80
 
-# Start Nginx and the application
-CMD service nginx start && python3 app.py --port 5000
+# Run app.py when the container launches
+CMD ["python3", "app.py"]
