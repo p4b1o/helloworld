@@ -4,8 +4,12 @@ services:
   app:
     build: .
     command: ["python3", "app.py"]
-    ports:
-      - "5000:5000"
+    # Usuń mapowanie portów dla aplikacji, aby nie wystawiała portu 5000 na zewnątrz
+    # ports:
+    #   - "5000:5000"
+    # Opcjonalnie, dodaj wolumen do rozwoju
+    volumes:
+      - .:/usr/src/app # optional, useful for development
 
   nginx:
     image: nginx:latest
